@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        user-select: none;
+        background-color: pink;
+      }
+      .shortComedian {
+        background-color: #0000ff;
+      }
+      .tallGuard {
+        background-color: #ff4711;
+      }
+      .choosableWords {
+        padding: 40px;
+        background-color: black;
+        border: 7px solid white;
+        margin: 2px;
+        color: white;
+        font-size: large;
+        display: flex;
+        align-items: center;
+      }
+      #wordBank {
+        margin-top: 100px;
+        display: grid;
+        grid-template-rows: min-content;
+        grid-template-columns: min-content min-content;
+      }
+      #displayArea {
+        font-size: 27px;
+        position: absolute;
+      }
+      #rewardP {
+        font-family: "font-family: Papyrus, fantasy";
+      }
+      #rewardS {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Her er en adjektiv(og mer?)historie!</h1>
+    <h2>Velg ordene for å forme historien</h2>
+    <p>
+      Once, there was a <wordbreak id="size">____</wordbreak> skeleton, who
+      liked to make <wordbreak id="activity">_____</wordbreak>.<br />The
+      skeleton lived with his
+      <wordbreak id="brother">______</wordbreak> brother. Together, they lived
+      in <wordbreak id="city">______</wordbreak>.
+    </p>
+    <div id="displayArea"></div>
+    <div id="wordBank">
+      <span
+        onclick="chooseSize(this)"
+        class="choosableWords"
+        style="font-family: 'Comic Sans MS', 'Comic Sans', cursive"
+        >short</span
+      >
+      <span
+        onclick="chooseSize(this)"
+        class="choosableWords"
+        style="font-family: Papyrus, fantasy"
+        >Tall</span
+      >
+      <span onclick="chooseActivity(this)" class="choosableWords"
+        >spaghetti</span
+      >
+      <span onclick="chooseActivity(this)" class="choosableWords"
+        >knock knock jokes</span
+      >
+      <span onclick="chooseColor(this)" class="choosableWords">orange</span>
+      <span onclick="chooseColor(this)" class="choosableWords">blue</span>
+      <span onclick="chooseCity(this)" class="choosableWords">Snowdin</span>
+      <span onclick="chooseCity(this)" class="choosableWords">Larvik</span>
+    </div>
+  </body>
+  <script>
+    //let allCorrect = false;
+    let chosenSize = "";
+    let chosenActivity = "";
+    let chosenColor = "";
+    let chosenCity = "";
+
+    function chooseSize(size) {
+      document.body.classList = [];
+      /*Checks if the Papyrus choice is chosen*/
+      if (size.innerHTML == "short") {
+        document.body.classList.add("shortComedian");
+        chosenSize = false;
+      }
+      if (size.innerHTML == "Tall") {
+        document.body.classList.add("tallGuard");
+        chosenSize = true;
+      }
+      document.getElementById("size").innerHTML = size.innerHTML;
+      checkCorrect();
+    }
+    function chooseActivity(activity) {
+      /*Checks if the Papyrus choice is chosen*/
+      if (activity.innerHTML == "spaghetti") {
+        chosenActivity = true;
+      }
+      if (activity.innerHTML == "knock knock jokes") {
+        chosenActivity = false;
+      }
+      document.getElementById("activity").innerHTML = activity.innerHTML;
+      checkCorrect();
+    }
+    function chooseColor(Color) {
+      /*Checks if the Papyrus choice is chosen*/
+      if (Color.innerHTML == "blue") {
+        chosenColor = true;
+      }
+      if (Color.innerHTML == "orange") {
+        chosenColor = false;
+      }
+      document.getElementById("brother").innerHTML = Color.innerHTML;
+      checkCorrect();
+    }
+    function chooseCity(city) {
+      /*Checks if the Papyrus choice is chosen*/
+      if (city.innerHTML == "Snowdin") {
+        chosenCity = true;
+      }
+      if (city.innerHTML == "Larvik") {
+        chosenCity = false;
+      }
+      document.getElementById("city").innerHTML = city.innerHTML;
+      checkCorrect();
+    }
+
+    function checkCorrect() {
+      if (
+        chosenCity == true &&
+        chosenColor == true &&
+        chosenActivity == true &&
+        chosenSize == true
+      ) {
+        document.getElementById("displayArea").innerHTML = /*HTML*/ `
+                <p id="rewardP">CONGRATULATIONS, HUMAN! YOU SOLVED MY PUZZLE! NYEH HEH HEH!</p>
+                `;
+      } else if (
+        chosenCity === false &&
+        chosenColor === false &&
+        chosenActivity === false &&
+        chosenSize === false
+      ) {
+        document.getElementById("displayArea").innerHTML = /*HTML*/ `
+    <p id="rewardS">well pal, that was a good story. take care.</p>`;
+      } else {
+        document.getElementById("displayArea").innerHTML = "";
+      }
+    }
+  </script>
+</html>
