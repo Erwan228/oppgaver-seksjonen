@@ -20,7 +20,7 @@
   <script>
     //Model
     let traficLights = [
-      { color: "red", active: false },
+      { color: "red", active: true },
       { color: "yellow", active: false },
       { color: "green", active: false },
     ];
@@ -32,6 +32,7 @@
       for (let i = 0; i < traficLights.length; i++) {
         html += createLights(i);
       }
+      diplay.innerHTML = html;
     }
 
     function createLights(i) {
@@ -46,6 +47,45 @@
     }
 
     //Controller
+    sequence1();
+    function sequence1() {
+      turnOffYellow();
+      turnOnRed();
+      const mySequence1 = setTimeout(sequence2, 5000);
+    }
+    function sequence2() {
+      turnOnYellow();
+      const mySequence2 = setTimeout(sequence3, 2000);
+    }
+    function sequence3() {
+      turnOffRed();
+      turnOffYellow();
+      turnOnGreen();
+      const mySequence3 = setTimeout(sequence4, 10000);
+    }
+    function sequence4() {
+      turnOfGreen();
+      turnOnYellow();
+      const mySequence4 = setTimeout(sequence1, 3000);
+    }
+    function turnOnRed() {
+      turnOn(0);
+    }
+    function turnOffRed() {
+      turnOff(0);
+    }
+    function turnOnYellow() {
+      turnOn(1);
+    }
+    function turnOffYellow() {
+      turnOff(1);
+    }
+    function turnOnGreen() {
+      turnOn(2);
+    }
+    function turnOfGreen() {
+      turnOff(2);
+    }
     function turnOn(index) {
       traficLights[index].active = true;
       view();
