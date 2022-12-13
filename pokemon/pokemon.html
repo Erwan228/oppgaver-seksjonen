@@ -16,13 +16,14 @@
     </style>
   </head>
   <body>
+    <button onclick="playMusic()"></button>
     <div id="wildPokemon"></div>
     <br />
     <div id="inventory"></div>
   </body>
   <script>
     //Model
-    let backgroundMusic;
+    const backgroundMusic = new Audio('Lavender Town (Original Japanese Version from Pokemon Red and Green).webm')
     let pokemon = [
       {name: "Bidoof", image: "bidoof.png", },
       {name: "Charizard", image: "charizard.png", },
@@ -46,8 +47,6 @@
       <p>What will you do?</p>
       <button onclick="capture()">POKÉBALL</button>
       <button onclick="flee()">RUN</button>
-      <br><br>
-      <button onclick="playBattle()">Play music.</button>
       `
     }
 
@@ -65,8 +64,8 @@
     }
 
     //Controller
-    function playBattle(){
-      backgroundMusic = new Audio('')
+    function playMusic(){
+      backgroundMusic.play();
     }
   </script>
 </html>
