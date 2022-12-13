@@ -16,27 +16,46 @@
     </style>
   </head>
   <body>
-    <img src="eevee.png" alt="" srcset="">
     <div id="wildPokemon"></div>
-    <button onclick="capture()">POKÉBALL</button>
-    <button onclick="flee()">RUN</button>
-        <br />
+    <br />
     <div id="inventory"></div>
   </body>
   <script>
     //Model
-let pokemon = [
-  {name: "Bidoof", image: "bidoof.png", }
-  {name: "Charizard", image: "charizard.png", }
-  {name: "Eevee", image: "eevee.png", }
-  {name: "Lapras", image: "lapras.png", }
-  {name: "Lucario", image: "lucario.png", }
-  {name: "Mew", image: "mew.png", }
-  {name: "Piplup", image: "piplup.png", }
-  {name: "Riolu", image: "rioulu.png", }
-]
-let pokemonChooser
+    let pokemon = [
+      {name: "Bidoof", image: "bidoof.png", },
+      {name: "Charizard", image: "charizard.png", },
+      {name: "Eevee", image: "eevee.png", },
+      {name: "Lapras", image: "lapras.png", },
+      {name: "Lucario", image: "lucario.png", },
+      {name: "Mew", image: "mew.png", },
+      {name: "Piplup", image: "piplup.png", },
+      {name: "Riolu", image: "rioulu.png", },
+    ];
+    let screen = document.getElementById('wildPokemon');
     //View
+    firstEncounter();
+    function firstEncounter(){
+      const chosenPokemon = pokemon[Math.floor(Math.random()*8)];
+      screen.innerHTML = /*HTML*/`
+      <img src="${chosenPokemon.image}">
+      <p>You encountered a wild ${chosenPokemon.name}!</p>
+      <p>What will you do?</p>
+      <button onclick="capture()">POKÉBALL</button>
+      <button onclick="flee()">RUN</button>
+      `
+    }
+
+    function nextEncounter(){}
+    
+    function finalEncounter(){
+      document.body.style.backgroundColor= "purple"
+      screen.innerHTML = /*HTML*/ `
+      <img src="darkEntity.png">
+      <p>A dark force intrigues you. It seems <span style="color: red">DEALY!</span></p><br><p>RUN AWAY</p>
+      <button onclick="die()">COME CLOSER</button>
+      `
+    }
 
     //Controller
   </script>
