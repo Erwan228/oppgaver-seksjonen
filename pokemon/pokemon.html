@@ -22,6 +22,7 @@
   </body>
   <script>
     //Model
+    let backgroundMusic;
     let pokemon = [
       {name: "Bidoof", image: "bidoof.png", },
       {name: "Charizard", image: "charizard.png", },
@@ -33,9 +34,11 @@
       {name: "Riolu", image: "rioulu.png", },
     ];
     let screen = document.getElementById('wildPokemon');
+    let capturedPokemon = '';
+
     //View
-    firstEncounter();
-    function firstEncounter(){
+    randomEncounter();
+    function randomEncounter(){
       const chosenPokemon = pokemon[Math.floor(Math.random()*8)];
       screen.innerHTML = /*HTML*/`
       <img src="${chosenPokemon.image}">
@@ -43,8 +46,12 @@
       <p>What will you do?</p>
       <button onclick="capture()">POKÉBALL</button>
       <button onclick="flee()">RUN</button>
+      <br><br>
+      <button onclick="playBattle()">Play music.</button>
       `
     }
+
+
 
     function nextEncounter(){}
     
@@ -58,5 +65,8 @@
     }
 
     //Controller
+    function playBattle(){
+      backgroundMusic = new Audio('')
+    }
   </script>
 </html>
