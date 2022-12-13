@@ -43,7 +43,8 @@
     function randomEncounter(){
       chosenPokemon = pokemon[Math.floor(Math.random()*8)];
       screen.innerHTML = /*HTML*/`
-      <img src="${chosenPokemon.image}">
+
+      <div id="image"><img src="${chosenPokemon.image}"></div>
       <p>You encountered a wild ${chosenPokemon.name}!</p>
       <p>What will you do?</p>
       <button onclick="capture()">POKÉBALL</button>
@@ -81,6 +82,19 @@
       `
     }
 
+    invnetoryButton();
+    function invnetoryButton(){
+      document.getElementById('inventory').innerHTML= /*HTML*/`
+      <button onclick="show()">Open your bag of kidnapped Pokémon</button>
+      `
+    }
+    function show(){
+      document.getElementById('inventory').innerHTML= /*HTML*/`
+      <button onclick="invnetoryButton()">Close your bag of kidnapped Pokémon</button>
+      <div>${capturedPokemon}</div>
+      `
+    }
+
     //Controller
     // function playMusic(){
     //   backgroundMusic.play();
@@ -89,11 +103,11 @@
     function capture(){
       let randomNumer1 = Math.floor(Math.random()*50);
       let randomNumer2 = Math.floor(Math.random()*100);
-      if(randomNumer1 == 50){deathScree();
+      if(randomNumer1 == 49){deathScree();
       return}
-      else{capturedPokemon += chosenPokemon.image;}
+      else{capturedPokemon += document.getElementById('image').innerHTML;};
       if(randomNumer2 == 66){finalEncounter()}
-      else {randomEncounter()}
+      else {randomEncounter()};
     }
 
     function flee(){
