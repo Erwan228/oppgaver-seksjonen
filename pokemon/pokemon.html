@@ -23,7 +23,7 @@
   </body>
   <script>
     //Model
-    const backgroundMusic = new Audio('Lavender Town (Original Japanese Version from Pokemon Red and Green).webm')
+    //const backgroundMusic = new Audio('/sounds/Lavender Town (Original Japanese Version from Pokemon Red and Green).webm')
     let pokemon = [
       {name: "Bidoof", image: "bidoof.png", },
       {name: "Charizard", image: "charizard.png", },
@@ -34,13 +34,14 @@
       {name: "Piplup", image: "piplup.png", },
       {name: "Riolu", image: "rioulu.png", },
     ];
+    let chosenPokemon;
     let screen = document.getElementById('wildPokemon');
     let capturedPokemon = '';
 
     //View
     randomEncounter();
     function randomEncounter(){
-      const chosenPokemon = pokemon[Math.floor(Math.random()*8)];
+      chosenPokemon = pokemon[Math.floor(Math.random()*8)];
       screen.innerHTML = /*HTML*/`
       <img src="${chosenPokemon.image}">
       <p>You encountered a wild ${chosenPokemon.name}!</p>
@@ -50,22 +51,57 @@
       `
     }
 
+    function die(){
+      document.body.style.backgroundColor="black";
+      document.body.style.color="red";
+      document.body.style.fontSize="larger";
+      screen.innerHTML = /*HTML*/ `
+      <img height="333px" src="./died.jpg" alt="" />
+    <p>Your <span style="color: black">action</span> failed. The <span style="color:black">wild pokémon</span> ????? you.</p>
+      `
+    }
+    function deathScree(){
+      document.body.style.backgroundColor="black";
+      document.body.style.color="red";
+      document.body.style.fontSize="larger";
+      screen.innerHTML = /*HTML*/ `
+      <img height="333px" src="./ded.jpg" alt="" />
+    <p>Your action failed. The wild pokémon killed you.</p>
+      `
+    }
 
 
-    function nextEncounter(){}
-    
+
     function finalEncounter(){
       document.body.style.backgroundColor= "purple"
       screen.innerHTML = /*HTML*/ `
       <img src="darkEntity.png">
-      <p>A dark force intrigues you. It seems <span style="color: red">DEALY!</span></p><br><p>RUN AWAY</p>
+      <p>A dark force intrigues you. It seems <span style="color: red">DEADLY!</span></p><br><p>RUN AWAY</p>
       <button onclick="die()">COME CLOSER</button>
       `
     }
 
     //Controller
-    function playMusic(){
-      backgroundMusic.play();
+    // function playMusic(){
+    //   backgroundMusic.play();
+    // }
+
+    function capture(){
+      let randomNumer1 = Math.floor(Math.random()*50);
+      let randomNumer2 = Math.floor(Math.random()*100);
+      if(randomNumer1 == 50){deathScree();
+      return}
+      else{capturedPokemon += chosenPokemon.image;}
+      if(randomNumer2 == 66){finalEncounter()}
+      else {randomEncounter()}
+    }
+
+    function flee(){
+      let randomNumer1 = Math.floor(Math.random()*100);
+      let randomNumer2 = Math.floor(Math.random()*100);
+      if(randomNumer1 == 50){deathScree()}
+      if(randomNumer2 == 66){finalEncounter()}
+      else {randomEncounter()}
     }
   </script>
 </html>
