@@ -16,14 +16,14 @@
     </style>
   </head>
   <body>
-    <button onclick="playMusic()"></button>
+    <button onclick="playBattleMusic()">Battle music</button>
     <div id="wildPokemon"></div>
     <br />
     <div id="inventory"></div>
   </body>
   <script>
     //Model
-    //const backgroundMusic = new Audio('/sounds/Lavender Town (Original Japanese Version from Pokemon Red and Green).webm')
+    const battleMusic = new Audio('Battle! [Trainer Battle] - Pokémon X_Pokémon Y - Super Smash Bros. Ultimate.webm')
     let pokemon = [
       {name: "Bidoof", image: "bidoof.png", },
       {name: "Charizard", image: "charizard.png", },
@@ -37,6 +37,7 @@
     let chosenPokemon;
     let screen = document.getElementById('wildPokemon');
     let capturedPokemon = '';
+    const backgroundMusic = new Audio ('Lavender Town (Original Japanese Version from Pokemon Red and Green).webm')
 
     //View
     randomEncounter();
@@ -74,6 +75,7 @@
 
 
     function finalEncounter(){
+      playMusic();
       document.body.style.backgroundColor= "purple"
       screen.innerHTML = /*HTML*/ `
       <img src="darkEntity.png">
@@ -96,9 +98,13 @@
     }
 
     //Controller
-    // function playMusic(){
-    //   backgroundMusic.play();
-    // }
+    function playMusic(){
+       backgroundMusic.play();
+    }
+
+    function playBattleMusic(){
+      battleMusic.play();
+    }
 
     function capture(){
       let randomNumer1 = Math.floor(Math.random()*50);
